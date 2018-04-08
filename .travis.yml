@@ -31,6 +31,7 @@ before_install:
 
 before_script:
     - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then cat /proc/cpuinfo; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sysctl -a; fi
 
     - pip2 install --user cpp-coveralls
     - pip2 install --user Cython
@@ -110,7 +111,7 @@ before_script:
     - git clone https://github.com/kmsmith137/simpulse.git
     - cd simpulse
     - ln -s site/Makefile.local.travis Makefile.local
-    - make
+    - make NUMPY_INCDIR=/usr/local/lib/python2.7/site-packages/numpy/core/include
     - make install
 
     - cd
@@ -122,11 +123,8 @@ before_script:
     - mv include/* chime/include/
 
     - cd
-    #- git clone https://github.com/kmsmith137/rf_kernels.git
-    - git clone https://github.com/dstndstn/rf_kernels.git
+    - git clone https://github.com/kmsmith137/rf_kernels.git
     - cd rf_kernels
-    ###
-    - git checkout travis
     - ln -s site/Makefile.local.travis Makefile.local
     - make install
 
