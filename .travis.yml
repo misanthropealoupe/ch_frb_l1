@@ -87,7 +87,10 @@ before_script:
     - export HAVE_BONSAI=y
     - export PYDIR=~/chime/lib/python2.7/site-packages
     - export PYTHON_INCDIR=/usr/include/python2.7
-    - export NUMPY_INCDIR=/usr/lib/python2.7/dist-packages/numpy/core/include
+    #- export NUMPY_INCDIR=/usr/lib/python2.7/dist-packages/numpy/core/include
+    - which python
+    - which python2
+    - export NUMPY_INCDIR=$(python -c "import numpy; print(numpy.get_include())")
     - export JSONCPP_INC_DIR=/usr/include/jsoncpp
     - export PYTHONPATH=${PYTHONPATH}:/usr/lib/python2.7/dist-packages
 
