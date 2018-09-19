@@ -26,7 +26,9 @@ before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install lz4 yaml-cpp jsoncpp; fi
     #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install fftw --without-fortran; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc --force || brew link --overwrite gcc; fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install fftw; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install hdf5@1.8 --force; fi
     # boost: already installed
     # fftw: problematic
 
@@ -77,9 +79,6 @@ before_script:
     # - if [ -d "hdf5" ]; then (cd hdf5 && make all install > hdf5.log 2>&1) || rm -R hdf5; fi
     # - if [ ! -d "hdf5" ]; then (wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.20/src/hdf5-1.8.20.tar.gz && tar xzf hdf5-1.8.20.tar.gz && mv hdf5-1.8.20 hdf5 && cd hdf5 && ./configure --prefix=$HOME/chime --enable-cxx && make all install > hdf5.log 2>&1); fi
     #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install hdf5; fi
-
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc --force || brew link --overwrite gcc; fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install hdf5@1.8 --force; fi
 
     - export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/chime/lib
 
