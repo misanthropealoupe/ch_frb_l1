@@ -15,6 +15,9 @@ MSGPACK_INC_DIR ?= ~/msgpack-2.1.0/include
 ZMQ_INC_DIR ?= ~/zeromq-4.2.0/include
 ZMQ_LIB_DIR ?= ~/zeromq-4.2.0/lib
 
+HDF5_INC_DIR ?= /usr/local/include
+HDF5_LIB_DIR ?= /usr/local/lib
+
 JSONCPP_INC_DIR ?= /usr/include/jsoncpp
 
 CXX ?= g++
@@ -32,9 +35,9 @@ ifeq ($(COVERAGE), yes)
     OPT_FLAGS += -fprofile-arcs -ftest-coverage
 endif
 
-CPP := $(CXX) -std=c++11 -pthread -fPIC -Wall $(OPT_FLAGS) -march=native -ffast-math -I. -I$(INCDIR) -I$(MSGPACK_INC_DIR) -I$(ZMQ_INC_DIR) -I$(JSONCPP_INC_DIR)
+CPP := $(CXX) -std=c++11 -pthread -fPIC -Wall $(OPT_FLAGS) -march=native -ffast-math -I. -I$(INCDIR) -I$(MSGPACK_INC_DIR) -I$(ZMQ_INC_DIR) -I$(JSONCPP_INC_DIR) -I$(HDF5_INC_DIR)
 
-CPP_LFLAGS := -L. -L$(LIBDIR) -L$(ZMQ_LIB_DIR)
+CPP_LFLAGS := -L. -L$(LIBDIR) -L$(ZMQ_LIB_DIR) -L$(HDF5_LIB_DIR)
 
 
 # We use the C (not C++) compiler only once: to compile the 'pybitshuffle' python module.
