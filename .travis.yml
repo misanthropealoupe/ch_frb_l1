@@ -98,8 +98,11 @@ before_script:
     - export JSONCPP_INC_DIR=/usr/include/jsoncpp
     - export PYTHONPATH=${PYTHONPATH}:/usr/lib/python2.7/dist-packages
 
-    - ls -l /usr/local/include/hdf5.h
-    - ls -l /usr/local/Cellar/hdf5*
+    - export HDF5_INC_DIR=/usr/local/opt/hdf5@1.8/include
+    - export HDF5_LIB_DIR=/usr/local/opt/hdf5@1.8/lib
+
+    #- ls -l /usr/local/include/hdf5.h
+    #- ls -l /usr/local/Cellar/hdf5*
 
     - cd
     - git clone https://github.com/CHIMEFRB/ch_frb_io.git
